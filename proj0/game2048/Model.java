@@ -172,6 +172,23 @@ public class Model extends Observable {
      */
     public static boolean atLeastOneMoveExists(Board b) {
         // TODO: Fill in this function.
+        return emptySpaceExists(b) || checkForNeighbors(b);
+
+    }
+    private static boolean checkForNeighbors(Board b) {
+        for (int col = 0; col < 4; col++) {
+            for (int row = 0; row < 4; row++) {
+                Tile curr = b.tile(col, row);
+//                check right neighbor
+                if(col + 1 < b.size() && curr.value() == b.tile(col + 1, row).value()){
+                    return true;
+                }
+//                check down neighbor
+                if (row + 1 < b.size() && curr.value() == b.tile(col, row + 1).value()){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
